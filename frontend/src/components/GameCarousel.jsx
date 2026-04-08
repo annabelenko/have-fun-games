@@ -20,6 +20,8 @@ function GameCarousel({ children }) {
 	const [sliderRef] = useKeenSlider({
 		loop: true,
 	});
+
+	// FIXME: Slider has improper scaling when the page loads.
 	return (
 		<>
 			<div className="navigation-wrapper">
