@@ -4,7 +4,12 @@ import "./GameSlide.css";
 function GameSlide() {
 	return (
 		<>
-			<div className="keen-slider__slide number-slide1">1</div>
+			<div className="game-slide">
+				<div className="keen-slider__slide number-slide1">
+					<div className="slide-element slide-thumbnail">Thumbnail</div>
+					<div className="slide-element slide-description">Game Title</div>
+				</div>
+			</div>
 		</>
 	);
 }

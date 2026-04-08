@@ -7,11 +7,28 @@
 	font-size: 50px;
 	color: #fff;
 	font-weight: 500;
-	height: 300px;
+	height: 400px;
 	max-height: 100vh;
 	font-family: "Inter", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+.slide-element {
+	height: 100%;
+	width: 100%;
+	padding: 100px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.slide-thumbnail {
+	width: 75%;
+}
+
+.slide-description {
+	width: 25%;
 }
 
 .number-slide1 {
