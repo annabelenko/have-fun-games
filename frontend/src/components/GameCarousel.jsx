@@ -17,8 +17,9 @@ function Arrow({ left }) {
 }
 
 function GameCarousel({ children }) {
-	const [sliderRef] = useKeenSlider();
-
+	const [sliderRef] = useKeenSlider({
+		loop: true,
+	});
 	return (
 		<>
 			<div className="navigation-wrapper">
