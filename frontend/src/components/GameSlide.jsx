@@ -1,5 +1,6 @@
 import "keen-slider/keen-slider.min.css";
 import "./GameSlide.css";
+import OSPlatform from "./OSPlatform";
 
 function GameSlide() {
 	// TODO: Implement thumbnail and description sections.
@@ -13,9 +14,9 @@ function GameSlide() {
 						style={{ display: "flex", flexDirection: "column" }}
 					>
 						<div>Game Title</div>
-						<div style={{ display: "flex", gap: "20px" }}>
+						<div style={{ display: "flex", flexDirection: "row", gap: "20px" }}>
 							<div>$0.99</div>
-							<div>Windows</div>
+							<OSPlatform Windows Mac Linux />
 						</div>
 					</div>
 				</div>
