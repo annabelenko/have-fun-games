@@ -5,7 +5,7 @@ import ItemPrice from "./ItemPrice";
 import Thumbnail from "./Thumbnail";
 
 function GameSlide({ name, price, platform = [] }) {
-	// TODO: Implement thumbnail and description sections.
+	// TODO: Implement button logic
 	return (
 		<>
 			<div className="game-slide">
