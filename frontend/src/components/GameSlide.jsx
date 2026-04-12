@@ -14,7 +14,7 @@ function GameSlide() {
 						className="slide-element number-slide2 slide-description"
 						style={{ display: "flex", flexDirection: "column" }}
 					>
-						<div>Game Title</div>
+						<div style={{ fontSize: "75%" }}>Game Title</div>
 						<div style={{ display: "flex", flexDirection: "row", gap: "20px" }}>
 							<ItemPrice price="0" />
 							<OSPlatform Windows Mac Linux />
