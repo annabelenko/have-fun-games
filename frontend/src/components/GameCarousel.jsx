@@ -21,7 +21,6 @@ function GameCarousel({ children }) {
 		loop: true,
 	});
 
-	// FIXME: Slider has improper scaling when the page loads.
 	return (
 		<>
 			<div className="navigation-wrapper">
