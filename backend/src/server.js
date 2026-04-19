@@ -1,13 +1,33 @@
-require("dotenv").config();
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import { supabase } from './supabaseClient.js';
 
-const express = require("express");
-const server = express();
-const PORT = process.env.PORT || 8080;
+dotenv.config();
 
-server.get("/", (req, res) => {
-	res.send(`Welcome from ${PORT}!`);
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+app.get('/', (req, res) => {
+  res.send('Backend running');
 });
 
-server.listen(PORT, () => {
-	console.log(`Hello World from ${PORT}`);
+app.get('/api/games', async (req, res) => {
+  const { data, error } = await supabase
+    .from('games')
+    .select('*');
+
+  if (error) {
+    return res.status(500).json({ error: error.message });
+  }
+
+  res.json(data);
+});
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
