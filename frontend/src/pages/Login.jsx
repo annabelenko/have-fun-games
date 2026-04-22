@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import { supabase } from "../lib/supabase";
 
@@ -18,24 +17,24 @@ export default function Login() {
 	};
 
 	return (
-	<div className="auth-container">
-	<h2>Login</h2>
-	{error && <p style={{ color: "red" }}>{error}</p>}
-	<form className="auth-form" onSubmit={handleLogin}>
-		<input
-		type="email"
-		placeholder="Email"
-		value={email}
-		onChange={(e) => setEmail(e.target.value)}
-		/>
-		<input
-		type="password"
-		placeholder="Password"
-		value={password}
-		onChange={(e) => setPassword(e.target.value)}
-		/>
-		<button type="submit">Login</button>
-	</form>
-	</div>
+		<div className="auth-container">
+			<h2>Login</h2>
+			{error && <p style={{ color: "red" }}>{error}</p>}
+			<form className="auth-form" onSubmit={handleLogin}>
+				<input
+					type="email"
+					placeholder="Email"
+					value={email}
+					onChange={(e) => setEmail(e.target.value)}
+				/>
+				<input
+					type="password"
+					placeholder="Password"
+					value={password}
+					onChange={(e) => setPassword(e.target.value)}
+				/>
+				<button type="submit">Login</button>
+			</form>
+		</div>
 	);
 }
