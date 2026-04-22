@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=Jersey+10&display=swap');
+
+body {
+  background-color: #892E3A;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  font-family: 'Pixelify Sans', sans-serif;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -39,4 +51,59 @@
 
 .read-the-docs {
   color: #888;
+}
+
+
+
+
+/* Header */
+.header {
+  background-color: #F4A938;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-logo {
+  width: 20px;
+  height: 20px;
+  background-color: #1a1a1a;
+}
+
+.header-title {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  color: #1a1a1a;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #F4A938;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 300px;
 }

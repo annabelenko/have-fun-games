@@ -15,24 +15,24 @@ export default function Signup() {
 	};
 
 	return (
-		<div>
-			<h2>Sign Up</h2>
-			{error && <p style={{ color: "red" }}>{error}</p>}
-			<form onSubmit={handleSignup}>
-				<input
-					type="email"
-					placeholder="Email"
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
-				/>
-				<input
-					type="password"
-					placeholder="Password"
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-				/>
-				<button type="submit">Create Account</button>
-			</form>
-		</div>
+			<div className="auth-container">
+	<h2>Sign Up</h2>
+	{error && <p style={{ color: "red" }}>{error}</p>}
+	<form className="auth-form" onSubmit={handleSignup}>
+		<input
+		type="email"
+		placeholder="Email"
+		value={email}
+		onChange={(e) => setEmail(e.target.value)}
+		/>
+		<input
+		type="password"
+		placeholder="Password"
+		value={password}
+		onChange={(e) => setPassword(e.target.value)}
+		/>
+		<button type="submit">Create Account</button>
+	</form>
+	</div>
 	);
 }
