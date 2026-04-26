@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=Jersey+10&display=swap');
 
 body {
-  background-color: #892E3A;
+  background-color: #0e0608;
   margin: 0;
   padding: 0;
 }
@@ -54,54 +54,85 @@ body {
 
 
 
-/* Header */
-.header {
-  background-color: #F4A938;
-  padding: 12px 24px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.header-logo {
-  width: 20px;
-  height: 20px;
-  background-color: #1a1a1a;
-}
-
-.header-title {
-  font-family: 'Pixelify Sans', sans-serif;
-  font-weight: bold;
-  font-size: 18px;
-  color: #1a1a1a;
-}
-
-* {
+/* ── Reset ── */
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-}
-
+/* ── Navbar ── */
 .header {
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 100;
   background-color: #F4A938;
-  padding: 12px 24px;
+  padding: 0 24px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+.header-brand {
   display: flex;
   align-items: center;
   gap: 10px;
+  text-decoration: none;
 }
 
-.auth-form {
+.header-logo {
+  width: 22px;
+  height: 22px;
+  background-color: #1a1a1a;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.header-title {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: #1a1a1a;
+}
+
+.header-nav {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  width: 300px;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.header-nav-link {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #1a1a1a;
+  text-decoration: none;
+  padding: 0.35rem 0.75rem;
+  border-radius: 7px;
+  transition: background 0.15s;
+}
+
+.header-nav-link:hover {
+  background: rgba(0,0,0,0.1);
+  color: #1a1a1a;
+}
+
+.header-nav-cta {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #F4A938;
+  text-decoration: none;
+  padding: 0.35rem 0.9rem;
+  background: #1a1a1a;
+  border-radius: 7px;
+  transition: background 0.15s;
+}
+
+.header-nav-cta:hover {
+  background: #333;
+  color: #F4A938;
 }
