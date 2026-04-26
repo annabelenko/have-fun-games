@@ -3,7 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { supabase } from './supabaseClient.js';
 
-dotenv.config();
+dotenv.config({ path: new URL('../../.env', import.meta.url).pathname });
 
 const app = express();
 
