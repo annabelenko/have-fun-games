@@ -1,15 +1,15 @@
+import styles from "./Thumbnail.module.css";
+
 function Thumbnail({ src }) {
+	const thumbnailImage = (
+		<>{!src ? <>Thumbnail</> : <img style={{}} src={src} />}</>
+	);
+
 	return (
 		<>
-			<img
-				style={{
-					position: "absolute",
-					height: "100%",
-					overflow: "hidden",
-				}}
-				src={src}
-			/>
-			<div style={{ fontSize: "75%" }}>Thumbnail</div>
+			<div className={styles.gameCard}>
+				<div className={styles.gameCardThumb}>{thumbnailImage}</div>
+			</div>
 		</>
 	);
 }
