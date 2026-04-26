@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Jersey+10&display=swap");
+
+.center {
+	padding-top: 58px; /* offset fixed navbar */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.gamePage {
+	max-width: 1024px;
+	left: 50%;
+	width: 100%;
+	height: 1000px;
+	z-index: 1;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 0;
+	width: 100%;
+	max-width: 940px;
+	margin: 0 auto;
+	background: rgba(0, 0, 0);
+	border-radius: 4px;
+	overflow: hidden;
+	box-shadow: 0 4px 32px rgba(0, 0, 0, 0.5);
+}
+
+.gamePageContent {
+	display: flex;
+	flex-direction: row;
+}
+
+.gamePageSection {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	padding: 30px;
+}
+
+.gamePageSectionLeft {
+	width: 50%;
+}
+
+.gamePageSectionRight {
+	width: 50%;
+}
+
+.purchaseModal {
+	background: rgba(0, 0, 0, 0.35);
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 200px;
+	padding: 20px;
+	transition:
+		transform 0.2s,
+		box-shadow 0.2s;
+}
+
+.purchaseModal:hover {
+	transform: translateY(-4px);
+	box-shadow:
+		0 8px 32px rgba(0, 0, 0, 0.4),
+		0 0 0 1px rgba(255, 255, 255, 0.25);
+}
+
+.purchaseModalTitle {
+	font-family: "Jersey 10";
+	font-size: 25px;
+}
+
+.background {
+	width: 100%;
+	height: 100%;
+	top: 0;
+	position: absolute;
+}
