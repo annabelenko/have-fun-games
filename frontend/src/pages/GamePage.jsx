@@ -31,7 +31,6 @@ export default function GamePage() {
 		);
 
 	GetGameInfo(params.id).then((data) => {
-		console.log(data);
 		setGameTitle(data.title);
 		setGameDescription(data.description);
 		setGamePrice(data.price);
