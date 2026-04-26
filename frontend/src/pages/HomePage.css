@@ -166,6 +166,7 @@
 .game-card-thumb {
   width: 100%;
   aspect-ratio: 16/9;
+  display: flex;
   background: linear-gradient(135deg, #5a1520 0%, #2a0a0e 100%);
 }
 
@@ -188,6 +189,15 @@
   color: #fff;
   margin: 0.3rem 0 0.75rem;
 }
+
+.game-card-title a {
+	color: #ffd150;
+}
+
+.game-card-title a:hover {
+	color: #f7374f;
+}
+
 
 .game-card-footer {
   display: flex;
