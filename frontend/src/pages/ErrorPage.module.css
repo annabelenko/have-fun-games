@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Jersey+10&display=swap");
 
 .center {
-	padding-top: 58px; /* offset fixed navbar */
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -22,4 +21,5 @@
 	justify-content: center;
 	flex-direction: column;
 	text-align: left;
+	height: 100vh;
 }
