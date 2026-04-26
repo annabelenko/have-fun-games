@@ -1,6 +1,6 @@
 // Can be used on any page to add an item to the cart.
 
-export default function PurchaseButton({ text, game_id }) {
+export default function CartButton({ text, game_id }) {
 	// Default text if not specified
 	if (!text) text = "Add to Cart";
 

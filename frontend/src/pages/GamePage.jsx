@@ -7,13 +7,16 @@ import ErrorPage from "./ErrorPage";
 import HeroCanvas from "../components/HeroCanvas";
 import ItemPrice from "../components/ItemPrice";
 
-import PurchaseButton from "../components/PurchaseButton";
+import PurchaseButton from "../components/CartButton";
 import Thumbnail from "../components/Thumbnail";
 
 import styles from "./GamePage.module.css";
+import CartButton from "../components/CartButton";
 
 export default function GamePage() {
 	const params = useParams();
+
+	// Using one state caused React to keep re-rendering, so we use multiple states for each property
 	const [gameTitle, setGameTitle] = useState(``);
 	const [gameDescription, setGameDescription] = useState(``);
 	const [gamePrice, setGamePrice] = useState(0);
@@ -45,19 +48,28 @@ export default function GamePage() {
 		<>
 			<div className={styles.center}>
 				<div className={`${styles.gamePage} ${dataReady ? "" : styles.hidden}`}>
+					<div
+						style={{
+							display: "flex",
+							flexDirection: "row",
+							alignContent: "center",
+							justifyContent: "center",
+							padding: "60px",
+						}}
+					>
+						{/* Game Cover */}
+						<img
+							src={gameCover}
+							style={{
+								width: "25%",
+								objectFit: "cover",
+							}}
+						/>
+					</div>
 					<div className={styles.gamePageContent}>
 						<div
 							className={`${styles.gamePageSection} ${styles.gamePageSectionLeft}`}
 						>
-							{/* Game Cover */}
-							<img
-								src={gameCover}
-								style={{
-									aspectRatio: 16 / 9,
-									width: "100%",
-									objectFit: "contain",
-								}}
-							/>
 							{/* Purchase Modal */}
 							<div className={styles.purchaseModal}>
 								<div className={styles.purchaseModalTitle}>Buy {gameTitle}</div>
@@ -71,7 +83,7 @@ export default function GamePage() {
 											marginTop: "50px",
 										}}
 									>
-										<PurchaseButton />
+										<CartButton />
 									</div>
 									<div
 										style={{
@@ -88,7 +100,7 @@ export default function GamePage() {
 						>
 							{/* Game Trailer */}
 							<video
-								style={{ width: "100%" }}
+								style={{ width: "100%", aspectRatio: 16 / 9 }}
 								autoplay
 								playsinline
 								controls
