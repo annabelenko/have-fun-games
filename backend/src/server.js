@@ -6,7 +6,7 @@ import gamesRouter from "./routes/games.js";
 import authRouter from "./routes/auth.js";
 import cartRouter from "./routes/cart.js";
 
-dotenv.config();
+dotenv.config({ path: new URL('../../.env', import.meta.url).pathname });
 
 const app = express();
 
