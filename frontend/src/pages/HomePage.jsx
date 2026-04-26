@@ -5,9 +5,9 @@ import GameCarousel from "../components/GameCarousel";
 import HeroCanvas from "../components/HeroCanvas";
 import "./HomePage.css";
 import ItemPrice from "../components/ItemPrice";
+import ErrorPage from "./ErrorPage";
 
 export default function HomePage() {
-	const [error, setError] = useState(false);
 	const [dataReady, setDataReady] = useState(false);
 
 	const [FEATURED_SLIDES, setFeaturedSlides] = useState([]);
@@ -16,8 +16,6 @@ export default function HomePage() {
 	useEffect(() => {
 		GetAllGames()
 			.then((data) => {
-				if (data.error) setError(true);
-
 				const getRandomColor = () => {
 					var letters = "0123456789ABCDEF";
 					var color = "#";
@@ -64,17 +62,6 @@ export default function HomePage() {
 			})
 			.catch((err) => console.warn(err));
 	}, [dataReady]);
-
-	// allGames.games.forEach((game) => {
-	// 	FEATURED_SLIDES.push({
-	// 		title: game.title,
-	// 		genre: "",
-	// 		desc: game.description,
-	// 		tags: [],
-	// 		price: game.price,
-	// 		bg: "linear-gradient(135deg, #050508 0%, #1a0a2a 100%)",
-	// 	});
-	// });
 
 	return (
 		<div className="home">
