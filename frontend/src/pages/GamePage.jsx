@@ -101,9 +101,8 @@ export default function GamePage() {
 							{/* Game Trailer */}
 							<video
 								style={{ width: "100%", aspectRatio: 16 / 9 }}
-								autoplay
-								playsinline
-								controls
+								autoPlay
+								playsInline
 								muted
 								loop
 								src={gamePreview}
