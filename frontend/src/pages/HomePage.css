@@ -190,6 +190,15 @@
   margin: 0.3rem 0 0.75rem;
 }
 
+.game-card-title a {
+	color: #ffd150;
+}
+
+.game-card-title a:hover {
+	color: #f7374f;
+}
+
+
 .game-card-footer {
   display: flex;
   align-items: center;

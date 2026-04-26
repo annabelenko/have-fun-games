@@ -61,7 +61,9 @@
 	justify-content: center;
 	padding: 0;
 	opacity: 0;
-	transition: opacity 0.2s, background 0.2s;
+	transition:
+		opacity 0.2s,
+		background 0.2s;
 	z-index: 2;
 }
 
@@ -73,8 +75,12 @@
 	background: rgba(0, 0, 0, 0.8);
 }
 
-.sc-arrow--left { left: 0; }
-.sc-arrow--right { right: 0; }
+.sc-arrow--left {
+	left: 0;
+}
+.sc-arrow--right {
+	right: 0;
+}
 
 .sc-arrow svg {
 	width: 14px;
@@ -104,7 +110,7 @@
 }
 
 .sc-title {
-	font-family: 'Pixelify Sans', sans-serif;
+	font-family: "Pixelify Sans", sans-serif;
 	font-size: 1.1rem;
 	font-weight: 700;
 	color: #fff;
@@ -113,6 +119,14 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 	line-height: 1.3;
+}
+
+.sc-title a {
+	color: #ffd150;
+}
+
+.sc-title a:hover {
+	color: #f7374f;
 }
 
 .sc-tags {
@@ -133,7 +147,7 @@
 	padding: 0.15rem 0.5rem;
 	border-radius: 3px;
 	background: rgba(244, 169, 56, 0.15);
-	color: #F4A938;
+	color: #f4a938;
 	border: 1px solid rgba(244, 169, 56, 0.25);
 }
 
@@ -161,27 +175,29 @@
 .sc-price {
 	font-size: 1rem;
 	font-weight: 700;
-	color: #F4A938;
+	color: #f4a938;
 }
 
 .sc-buy-btn {
 	padding: 0.4rem 1rem;
-	background: linear-gradient(135deg, #892E3A 0%, #6a1e28 100%);
+	background: linear-gradient(135deg, #892e3a 0%, #6a1e28 100%);
 	border: 1px solid rgba(244, 169, 56, 0.4);
 	border-radius: 3px;
-	color: #F4A938;
+	color: #f4a938;
 	font-size: 0.8rem;
 	font-weight: 700;
 	font-family: inherit;
 	cursor: pointer;
 	letter-spacing: 0.04em;
 	white-space: nowrap;
-	transition: background 0.15s, border-color 0.15s;
+	transition:
+		background 0.15s,
+		border-color 0.15s;
 }
 
 .sc-buy-btn:hover {
-	background: linear-gradient(135deg, #a33543 0%, #892E3A 100%);
-	border-color: #F4A938;
+	background: linear-gradient(135deg, #a33543 0%, #892e3a 100%);
+	border-color: #f4a938;
 }
 
 /* ── Thumbnail sidebar (right) ── */
@@ -195,7 +211,9 @@
 	scrollbar-width: none;
 }
 
-.sc-sidebar::-webkit-scrollbar { display: none; }
+.sc-sidebar::-webkit-scrollbar {
+	display: none;
+}
 
 .sc-thumb {
 	display: flex;
@@ -223,7 +241,7 @@
 }
 
 .sc-thumb--active .sc-thumb-title {
-	color: #F4A938;
+	color: #f4a938;
 }
 
 .sc-thumb-inner {
@@ -259,7 +277,7 @@
 	font-weight: 600;
 	color: #fff;
 	line-height: 1.2;
-	font-family: 'Pixelify Sans', sans-serif;
+	font-family: "Pixelify Sans", sans-serif;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -284,7 +302,7 @@
 
 .sc-progress-bar {
 	height: 100%;
-	background: #F4A938;
+	background: #f4a938;
 	transition: width 0.05s linear;
 }
 
@@ -327,4 +345,3 @@
 		flex: 0 0 100%;
 	}
 }
-
