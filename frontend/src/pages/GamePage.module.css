@@ -3,26 +3,25 @@
 .center {
 	padding-top: 58px; /* offset fixed navbar */
 	display: flex;
-	align-items: center;
-	justify-content: center;
+}
+
+.hidden {
+	visibility: hidden;
 }
 
 .gamePage {
 	max-width: 1024px;
 	left: 50%;
 	width: 100%;
-	height: 1000px;
+	height: 105vh;
 	z-index: 1;
 	display: flex;
-	flex-direction: row;
-	justify-content: center;
+	flex-direction: column;
+	align-items: center;
 	gap: 0;
-	width: 100%;
-	max-width: 940px;
 	margin: 0 auto;
 	background: rgba(0, 0, 0);
 	border-radius: 4px;
-	overflow: hidden;
 	box-shadow: 0 4px 32px rgba(0, 0, 0, 0.5);
 }
 
