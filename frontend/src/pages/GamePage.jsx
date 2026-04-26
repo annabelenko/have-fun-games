@@ -1,4 +1,7 @@
+import { useState } from "react";
 import { useParams } from "react-router";
+import { GetGameInfo } from "../lib/api";
+
 import ErrorPage from "./ErrorPage";
 
 import HeroCanvas from "../components/HeroCanvas";
@@ -12,6 +15,11 @@ import styles from "./GamePage.module.css";
 
 export default function GamePage() {
 	const params = useParams();
+	const [gameTitle, setGameTitle] = useState(`[ Item ${params.id} ]`);
+	const [gameDescription, setGameDescription] = useState(
+		`[ Item ${params.id} ]`,
+	);
+	const [gamePrice, setGamePrice] = useState(0);
 
 	if (!params.id)
 		return (
@@ -20,13 +28,12 @@ export default function GamePage() {
 			</>
 		);
 
-	// Todo: Link to API based on game
-	const GAME_INFO = {
-		Title: `[ Item ${params.id} ]`,
-		Price: 0.99,
-		Description:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-	};
+	GetGameInfo(params.id).then((data) => {
+		console.log(data);
+		setGameTitle(data.title);
+		setGameDescription(data.description);
+		setGamePrice(data.price);
+	});
 
 	return (
 		<>
@@ -38,10 +45,8 @@ export default function GamePage() {
 						>
 							{/* Purchase Modal */}
 							<div className={styles.purchaseModal}>
-								<div className={styles.purchaseModalTitle}>
-									Buy {GAME_INFO.Title}
-								</div>
-								<ItemPrice />
+								<div className={styles.purchaseModalTitle}>Buy {gameTitle}</div>
+								<ItemPrice price={gamePrice} />
 								<div style={{ display: "flex" }}>
 									<div
 										style={{
@@ -64,7 +69,7 @@ export default function GamePage() {
 								</div>
 							</div>
 							{/* Game Description */}
-							<div>{GAME_INFO.Description}</div>
+							<div>{gameDescription}</div>
 						</div>
 						<div
 							className={`${styles.gamePageSection} ${styles.gamePageSectionRight}`}
