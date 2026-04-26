@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { GetGameInfo } from "../lib/api";
 
@@ -16,33 +16,31 @@ import CartButton from "../components/CartButton";
 export default function GamePage() {
 	const params = useParams();
 
-	// Using one state caused React to keep re-rendering, so we use multiple states for each property
-	const [gameTitle, setGameTitle] = useState(``);
-	const [gameDescription, setGameDescription] = useState(``);
-	const [gamePrice, setGamePrice] = useState(0);
-	const [gameCover, setGameCover] = useState(``);
-	const [gamePreview, setGamePreview] = useState(``);
-	const [gameReleaseDate, setGameReleaseDate] = useState(``);
-	const [gameDeveloper, setGameDeveloper] = useState(``);
+	const [gameData, setGameData] = useState({});
 	const [dataReady, setDataReady] = useState(false);
+	const [error, setError] = useState(false);
 
-	if (!params.id)
+	// Since the game ID is a UID, we do not need to fetch from the backend if the parameter provided is not a UID.
+	const UID_REGEX =
+		/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
+
+	useEffect(() => {
+		if (!UID_REGEX.test(params.id)) return;
+		GetGameInfo(params.id)
+			.then((data) => {
+				if (data.error) setError(true);
+				setGameData(data);
+				setDataReady(true);
+			})
+			.catch((err) => console.warn(err));
+	}, [params.id]);
+
+	if (!UID_REGEX.test(params.id) || error)
 		return (
 			<>
 				<ErrorPage message="This item is not available" />
 			</>
 		);
-
-	GetGameInfo(params.id).then((data) => {
-		setGameTitle(data.title);
-		setGameDescription(data.description);
-		setGamePrice(data.price);
-		setGameCover(data.cover_image_url);
-		setGamePreview(data.micro_trailer_url);
-		setGameReleaseDate(data.release_date);
-		setGameDeveloper(data.developer);
-		setDataReady(true);
-	});
 
 	return (
 		<>
@@ -59,7 +57,7 @@ export default function GamePage() {
 					>
 						{/* Game Cover */}
 						<img
-							src={gameCover}
+							src={gameData.cover_image_url}
 							style={{
 								width: "25%",
 								objectFit: "cover",
@@ -72,8 +70,10 @@ export default function GamePage() {
 						>
 							{/* Purchase Modal */}
 							<div className={styles.purchaseModal}>
-								<div className={styles.purchaseModalTitle}>Buy {gameTitle}</div>
-								<ItemPrice price={gamePrice} />
+								<div className={styles.purchaseModalTitle}>
+									Buy {gameData.title}
+								</div>
+								<ItemPrice price={gameData.Price} />
 								<div style={{ display: "flex" }}>
 									<div
 										style={{
@@ -105,17 +105,17 @@ export default function GamePage() {
 								playsInline
 								muted
 								loop
-								src={gamePreview}
+								src={gameData.micro_trailer_url}
 							/>
 							<div style={{ display: "flex", flexDirection: "column" }}>
-								<p>Release Date: {gameReleaseDate}</p>
-								<p>Developer: {gameDeveloper}</p>
+								<p>Release Date: {gameData.release_date}</p>
+								<p>Developer: {gameData.developer}</p>
 							</div>
 						</div>
 					</div>
 					{/* Game Description */}
 					<div style={{ padding: "10px 60px 60px 60px" }}>
-						{gameDescription}
+						{gameData.description}
 					</div>
 				</div>
 			</div>
