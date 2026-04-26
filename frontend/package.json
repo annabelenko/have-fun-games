@@ -10,8 +10,9 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
-		"keen-slider": "^6.8.6",
 		"@supabase/supabase-js": "^2.103.0",
+		"keen-slider": "^6.8.6",
+		"rating-star": "^1.1.0",
 		"react": "^19.2.0",
 		"react-dom": "^19.2.0",
 		"react-router-dom": "^7.14.0"
