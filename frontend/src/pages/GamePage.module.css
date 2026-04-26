@@ -39,10 +39,12 @@
 
 .gamePageSectionLeft {
 	width: 50%;
+	padding-left: 60px;
 }
 
 .gamePageSectionRight {
 	width: 50%;
+	padding-right: 60px;
 }
 
 .purchaseModal {
