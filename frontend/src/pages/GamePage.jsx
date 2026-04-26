@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { GetGameInfo } from "../lib/api";
+import { RatingStar } from "rating-star";
 
 import ErrorPage from "./ErrorPage";
 
@@ -17,6 +18,8 @@ export default function GamePage() {
 	const params = useParams();
 
 	const [gameData, setGameData] = useState({});
+	// Price wasn't showing up correctly so we use a separate state
+	const [gamePrice, setGamePrice] = useState(0);
 	const [dataReady, setDataReady] = useState(false);
 	const [error, setError] = useState(false);
 
@@ -30,6 +33,7 @@ export default function GamePage() {
 			.then((data) => {
 				if (data.error) setError(true);
 				setGameData(data);
+				setGamePrice(data.price);
 				setDataReady(true);
 			})
 			.catch((err) => console.warn(err));
@@ -71,9 +75,9 @@ export default function GamePage() {
 							{/* Purchase Modal */}
 							<div className={styles.purchaseModal}>
 								<div className={styles.purchaseModalTitle}>
-									Buy {gameData.title}
+									{gamePrice != "0" ? "Buy" : "Get"} {gameData.title}
 								</div>
-								<ItemPrice price={gameData.Price} />
+								<ItemPrice price={gamePrice} />
 								<div style={{ display: "flex" }}>
 									<div
 										style={{
@@ -110,6 +114,21 @@ export default function GamePage() {
 							<div style={{ display: "flex", flexDirection: "column" }}>
 								<p>Release Date: {gameData.release_date}</p>
 								<p>Developer: {gameData.developer}</p>
+								<div
+									style={{
+										display: "flex",
+										flexDirection: "column",
+										alignItems: "baseline",
+										height: "50px",
+									}}
+								>
+									<p>Ratings: </p>
+									<RatingStar
+										maxScore={1}
+										rating={gameData.rating * 100}
+										size="20"
+									/>
+								</div>
 							</div>
 						</div>
 					</div>
