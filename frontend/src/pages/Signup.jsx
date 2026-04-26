@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 import "./auth.css";
 
@@ -10,7 +10,6 @@ export default function Signup() {
 	const [error, setError] = useState(null);
 	const [success, setSuccess] = useState(false);
 	const [loading, setLoading] = useState(false);
-	const navigate = useNavigate();
 
 	const handleSignup = async (e) => {
 		e.preventDefault();
