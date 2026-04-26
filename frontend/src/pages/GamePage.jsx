@@ -62,6 +62,7 @@ export default function GamePage() {
 						{/* Game Cover */}
 						<img
 							src={gameData.cover_image_url}
+							className={styles.dropShadow}
 							style={{
 								width: "25%",
 								objectFit: "cover",

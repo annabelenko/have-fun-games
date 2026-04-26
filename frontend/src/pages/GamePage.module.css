@@ -9,6 +9,10 @@
 	visibility: hidden;
 }
 
+.dropShadow {
+	box-shadow: 0 4px 32px rgba(0, 0, 0, 0.5);
+}
+
 .gamePage {
 	max-width: 1024px;
 	left: 50%;
@@ -20,7 +24,18 @@
 	flex-direction: column;
 	gap: 0;
 	margin: 0 auto;
-	background: rgba(0, 0, 0);
+	background:
+		radial-gradient(
+			ellipse at 70% 10%,
+			rgba(128, 109, 0, 0.2) 0%,
+			transparent 55%
+		),
+		radial-gradient(
+			ellipse at 20% 80%,
+			rgba(128, 109, 0, 0.1) 0%,
+			transparent 50%
+		),
+		radial-gradient(ellipse at 50% 50%, #1a0508 0%, #0e0608 70%, #080306 100%);
 	border-radius: 4px;
 	box-shadow: 0 4px 32px rgba(0, 0, 0, 0.5);
 }
