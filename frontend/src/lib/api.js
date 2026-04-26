@@ -11,3 +11,17 @@ export async function GetGameInfo(id) {
 
 	return response.json();
 }
+
+export async function GetAllGames() {
+	const response = await fetch(`${BACKEND_URL}/api/games`);
+
+	if (response?.ok) {
+		console.log(`Successfully fetched all games`);
+	} else {
+		console.warn(`Failed to fetch games: HTTP ${response?.status}`);
+	}
+
+	return response.json();
+}
+
+export { BACKEND_URL };

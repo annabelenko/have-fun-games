@@ -56,7 +56,9 @@ function GameCarousel({ slides = [] }) {
 	return (
 		<div
 			className="sc-root"
-			onMouseEnter={() => { pausedRef.current = true; }}
+			onMouseEnter={() => {
+				pausedRef.current = true;
+			}}
 			onMouseLeave={() => {
 				pausedRef.current = false;
 				startRef.current = performance.now() - (progress / 100) * INTERVAL;
@@ -66,29 +68,53 @@ function GameCarousel({ slides = [] }) {
 			<div className="sc-main">
 				<div
 					className="sc-art"
-					style={{ background: slide.bg || "linear-gradient(135deg,#3a0a14,#1a0508)" }}
+					style={{
+						background: slide.bg || "linear-gradient(135deg,#3a0a14,#1a0508)",
+					}}
 				>
-					{slide.img
-						? <img src={slide.img} alt={slide.title} className="sc-art-img" />
-						: <div className="sc-art-placeholder">🎮</div>
-					}
+					{slide.img ? (
+						<img
+							src={slide.img}
+							style={{ objectFit: "contain" }}
+							alt={slide.title}
+							className="sc-art-img"
+						/>
+					) : (
+						<div className="sc-art-placeholder">🎮</div>
+					)}
 
 					{/* Prev / Next arrows */}
-					<button className="sc-arrow sc-arrow--left" onClick={prev} aria-label="Previous">
-						<svg viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.83-9.34 9.17 9.34 9.17-2.83 2.83L4.5 12z"/></svg>
+					<button
+						className="sc-arrow sc-arrow--left"
+						onClick={prev}
+						aria-label="Previous"
+					>
+						<svg viewBox="0 0 24 24">
+							<path d="M16.67 0l2.83 2.83-9.34 9.17 9.34 9.17-2.83 2.83L4.5 12z" />
+						</svg>
 					</button>
-					<button className="sc-arrow sc-arrow--right" onClick={next} aria-label="Next">
-						<svg viewBox="0 0 24 24"><path d="M7.33 24l-2.83-2.83 9.34-9.17L4.5 2.83 7.33 0l12.17 12z"/></svg>
+					<button
+						className="sc-arrow sc-arrow--right"
+						onClick={next}
+						aria-label="Next"
+					>
+						<svg viewBox="0 0 24 24">
+							<path d="M7.33 24l-2.83-2.83 9.34-9.17L4.5 2.83 7.33 0l12.17 12z" />
+						</svg>
 					</button>
 				</div>
 
 				{/* Info bar below art */}
 				<div className="sc-info">
 					<div className="sc-info-left">
-						<h2 className="sc-title">{slide.title}</h2>
+						<h2 className="sc-title">
+							<a href={slide.url}>{slide.title}</a>
+						</h2>
 						<div className="sc-tags">
 							{(slide.tags || []).map((t) => (
-								<span className="sc-tag" key={t}>{t}</span>
+								<span className="sc-tag" key={t}>
+									{t}
+								</span>
 							))}
 						</div>
 						<p className="sc-desc">{slide.desc}</p>
@@ -96,7 +122,10 @@ function GameCarousel({ slides = [] }) {
 					<div className="sc-info-right">
 						<div className="sc-price">
 							{slide.price > 0
-								? new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(slide.price)
+								? new Intl.NumberFormat("en-US", {
+										style: "currency",
+										currency: "USD",
+									}).format(slide.price)
 								: "Free to Play"}
 						</div>
 						<button className="sc-buy-btn">Add to Cart</button>
@@ -114,9 +143,13 @@ function GameCarousel({ slides = [] }) {
 					>
 						<div
 							className="sc-thumb-art"
-							style={{ background: s.bg || "linear-gradient(135deg,#3a0a14,#1a0508)" }}
+							style={{
+								background: s.bg || "linear-gradient(135deg,#3a0a14,#1a0508)",
+							}}
 						>
-							{s.img && <img src={s.img} alt={s.title} className="sc-thumb-img" />}
+							{s.img && (
+								<img src={s.img} alt={s.title} className="sc-thumb-img" />
+							)}
 						</div>
 						<div className="sc-thumb-info">
 							<span className="sc-thumb-title">{s.title}</span>
@@ -125,7 +158,10 @@ function GameCarousel({ slides = [] }) {
 						{/* Progress bar — only on active */}
 						{i === current && (
 							<div className="sc-progress">
-								<div className="sc-progress-bar" style={{ width: `${progress}%` }} />
+								<div
+									className="sc-progress-bar"
+									style={{ width: `${progress}%` }}
+								/>
 							</div>
 						)}
 					</button>
