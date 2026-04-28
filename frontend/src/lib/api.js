@@ -12,11 +12,12 @@ export async function GetGameInfo(id) {
 	return response.json();
 }
 
-export async function GetAllGames() {
-	const response = await fetch(`${BACKEND_URL}/api/games`);
+export async function GetAllGames(page = 1, limit = 20) {
+	const params = new URLSearchParams({ page, limit });
+	const response = await fetch(`${BACKEND_URL}/api/games?${params}`);
 
 	if (response?.ok) {
-		console.log(`Successfully fetched all games`);
+		console.log(`Successfully fetched games page ${page}`);
 	} else {
 		console.warn(`Failed to fetch games: HTTP ${response?.status}`);
 	}
