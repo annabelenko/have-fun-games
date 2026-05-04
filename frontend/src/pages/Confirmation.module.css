@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Jersey+10&display=swap");
+
+.center {
+	display: flex;
+	flex-direction: row;
+	gap: 100px;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	background:
+		radial-gradient(
+			ellipse at 70% 10%,
+			rgba(128, 109, 0, 0.2) 0%,
+			transparent 55%
+		),
+		radial-gradient(
+			ellipse at 20% 80%,
+			rgba(128, 109, 0, 0.1) 0%,
+			transparent 50%
+		),
+		radial-gradient(ellipse at 50% 50%, #1a0508 0%, #0e0608 70%, #080306 100%);
+}
+
+.confirmationHeader {
+	font-size: 50px;
+	font-family: "Jersey 10", sans-serif;
+}
+
+.confirmationMessage {
+	color: orange;
+}
+
+.confirmationModal {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	text-align: left;
+	height: 100vh;
+}
