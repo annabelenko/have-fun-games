@@ -5,11 +5,11 @@ const currencyFormat = (price) => {
 	}).format(price);
 };
 
-function ItemPrice({ price }) {
+function ItemPrice({ price, numberOnly }) {
 	return (
 		<>
 			<div style={{ fontSize: "20px" }}>
-				{price > 0 ? `${currencyFormat(price)}` : "Free to Play"}
+				{price > 0 || numberOnly ? `${currencyFormat(price)}` : "Free to Play"}
 			</div>
 		</>
 	);
