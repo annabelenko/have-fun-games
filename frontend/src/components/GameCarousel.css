@@ -1,0 +1,347 @@
+/* ── Steam-style Featured Carousel ── */
+
+.sc-root {
+	display: flex;
+	gap: 0;
+	width: 100%;
+	max-width: 940px;
+	margin: 0 auto;
+	background: rgba(0, 0, 0, 0.4);
+	border-radius: 4px;
+	overflow: hidden;
+	box-shadow: 0 4px 32px rgba(0, 0, 0, 0.5);
+	user-select: none;
+}
+
+/* ── Main feature (left) ── */
+.sc-main {
+	flex: 1 1 0;
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+}
+
+.sc-art {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	overflow: hidden;
+	flex-shrink: 0;
+}
+
+.sc-art-img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.sc-art-placeholder {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 6rem;
+	opacity: 0.35;
+}
+
+/* Arrows */
+.sc-arrow {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 36px;
+	height: 60px;
+	background: rgba(0, 0, 0, 0.55);
+	border: none;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	opacity: 0;
+	transition:
+		opacity 0.2s,
+		background 0.2s;
+	z-index: 2;
+}
+
+.sc-art:hover .sc-arrow {
+	opacity: 1;
+}
+
+.sc-arrow:hover {
+	background: rgba(0, 0, 0, 0.8);
+}
+
+.sc-arrow--left {
+	left: 0;
+}
+.sc-arrow--right {
+	right: 0;
+}
+
+.sc-arrow svg {
+	width: 14px;
+	height: 14px;
+	fill: #fff;
+}
+
+/* Info bar — fixed height so the carousel never shifts between slides */
+.sc-info {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 1rem;
+	padding: 0.85rem 1rem;
+	background: rgba(0, 0, 0, 0.45);
+	height: 120px;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+.sc-info-left {
+	flex: 1;
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+.sc-title {
+	font-family: "Pixelify Sans", sans-serif;
+	font-size: 1.1rem;
+	font-weight: 700;
+	color: #fff;
+	margin: 0 0 0.3rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	line-height: 1.3;
+}
+
+.sc-title a {
+	color: #ffd150;
+}
+
+.sc-title a:hover {
+	color: #f7374f;
+}
+
+.sc-tags {
+	display: flex;
+	flex-wrap: nowrap;
+	gap: 0.3rem;
+	margin-bottom: 0.35rem;
+	overflow: hidden;
+	height: 20px;
+	align-items: center;
+	flex-shrink: 0;
+}
+
+.sc-tag {
+	font-size: 0.7rem;
+	font-weight: 600;
+	letter-spacing: 0.05em;
+	padding: 0.15rem 0.5rem;
+	border-radius: 3px;
+	background: rgba(244, 169, 56, 0.15);
+	color: #f4a938;
+	border: 1px solid rgba(244, 169, 56, 0.25);
+}
+
+.sc-desc {
+	font-size: 0.78rem;
+	color: rgba(255, 255, 255, 0.5);
+	margin: 0;
+	line-height: 1.5;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.sc-info-right {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: center;
+	gap: 0.4rem;
+	flex-shrink: 0;
+	height: 100%;
+}
+
+.sc-price {
+	font-size: 1rem;
+	font-weight: 700;
+	color: #f4a938;
+}
+
+.sc-buy-btn {
+	padding: 0.4rem 1rem;
+	background: linear-gradient(135deg, #892e3a 0%, #6a1e28 100%);
+	border: 1px solid rgba(244, 169, 56, 0.4);
+	border-radius: 3px;
+	color: #f4a938;
+	font-size: 0.8rem;
+	font-weight: 700;
+	font-family: inherit;
+	cursor: pointer;
+	letter-spacing: 0.04em;
+	white-space: nowrap;
+	transition:
+		background 0.15s,
+		border-color 0.15s;
+}
+
+.sc-buy-btn:hover {
+	background: linear-gradient(135deg, #a33543 0%, #892e3a 100%);
+	border-color: #f4a938;
+}
+
+/* ── Thumbnail sidebar (right) ── */
+.sc-sidebar {
+	width: 190px;
+	flex-shrink: 0;
+	display: flex;
+	flex-direction: column;
+	background: rgba(0, 0, 0, 0.35);
+	overflow-y: auto;
+	scrollbar-width: none;
+}
+
+.sc-sidebar::-webkit-scrollbar {
+	display: none;
+}
+
+.sc-thumb {
+	display: flex;
+	align-items: center;
+	gap: 0;
+	width: 100%;
+	background: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+	text-align: left;
+	position: relative;
+	flex-shrink: 0;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+	transition: background 0.15s;
+	flex-direction: column;
+}
+
+.sc-thumb:hover {
+	background: rgba(255, 255, 255, 0.04);
+}
+
+.sc-thumb--active {
+	background: rgba(244, 169, 56, 0.08);
+}
+
+.sc-thumb--active .sc-thumb-title {
+	color: #f4a938;
+}
+
+.sc-thumb-inner {
+	display: flex;
+	width: 100%;
+}
+
+.sc-thumb-art {
+	width: 80px;
+	height: 46px;
+	flex-shrink: 0;
+	overflow: hidden;
+}
+
+.sc-thumb-img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.sc-thumb-info {
+	flex: 1;
+	min-width: 0;
+	padding: 0.4rem 0.6rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 0.15rem;
+}
+
+.sc-thumb-title {
+	font-size: 0.75rem;
+	font-weight: 600;
+	color: #fff;
+	line-height: 1.2;
+	font-family: "Pixelify Sans", sans-serif;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: block;
+}
+
+.sc-thumb-genre {
+	font-size: 0.65rem;
+	color: rgba(255, 255, 255, 0.4);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: block;
+}
+
+/* Progress bar */
+.sc-progress {
+	width: 100%;
+	height: 3px;
+	background: rgba(255, 255, 255, 0.1);
+}
+
+.sc-progress-bar {
+	height: 100%;
+	background: #f4a938;
+	transition: width 0.05s linear;
+}
+
+/* Fix thumb layout — art + info side by side */
+.sc-thumb {
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.sc-thumb-art {
+	/* already 80x46 */
+}
+
+.sc-progress {
+	flex: 0 0 100%;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+	.sc-root {
+		flex-direction: column;
+	}
+	.sc-sidebar {
+		width: 100%;
+		flex-direction: row;
+		overflow-x: auto;
+		overflow-y: hidden;
+	}
+	.sc-thumb {
+		flex-direction: column;
+		min-width: 100px;
+		border-bottom: none;
+		border-right: 1px solid rgba(255, 255, 255, 0.05);
+	}
+	.sc-thumb-art {
+		width: 100%;
+		height: 56px;
+	}
+	.sc-progress {
+		flex: 0 0 100%;
+	}
+}

@@ -1,0 +1,27 @@
+.gameCard {
+	background: rgba(0, 0, 0, 0.35);
+	border: 1px solid rgba(244, 169, 56, 0.12);
+	border-radius: 14px;
+	overflow: hidden;
+	transition:
+		transform 0.2s,
+		box-shadow 0.2s;
+	min-height: 100px;
+}
+
+.gameCard:hover {
+	transform: translateY(-4px);
+	box-shadow:
+		0 8px 32px rgba(0, 0, 0, 0.4),
+		0 0 0 1px rgba(244, 169, 56, 0.25);
+}
+
+.gameCardThumb {
+	width: 100%;
+	aspect-ratio: 16/9;
+	background: linear-gradient(135deg, #5a1520 0%, #2a0a0e 100%);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 50px;
+}

@@ -1,35 +1,67 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useContext } from "react";
+import { BrowserRouter, Routes, Route, Link, useNavigate } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import GamePage from "./pages/GamePage";
+import ErrorPage from "./pages/ErrorPage";
+import AuthProvider, { AuthContext } from "./auth/AuthContext";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+function Header() {
+	const { user, loading, logout } = useContext(AuthContext);
+	const navigate = useNavigate();
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+	const handleLogout = async () => {
+		await logout();
+		navigate("/");
+	};
+
+	if (loading) return null; // Avoid flashing wrong nav on load
+
+	return (
+		<header className="header">
+			<Link to="/" className="header-brand">
+				<div className="header-logo"></div>
+				<span className="header-title">Have Fun Games</span>
+			</Link>
+			<nav className="header-nav">
+				{user ? (
+					<>
+						<span className="header-nav-link">{user.email}</span>
+						<button className="header-nav-cta" onClick={handleLogout}>
+							Log Out
+						</button>
+					</>
+				) : (
+					<>
+						<Link to="/login" className="header-nav-link">
+							Login
+						</Link>
+						<Link to="/signup" className="header-nav-cta">
+							Sign Up
+						</Link>
+					</>
+				)}
+			</nav>
+		</header>
+	);
 }
 
-export default App
+export default function App() {
+	return (
+		<BrowserRouter>
+			<AuthProvider>
+				<Header />
+				<Routes>
+					<Route path="/" element={<HomePage />} />
+					<Route path="/login" element={<Login />} />
+					<Route path="/signup" element={<Signup />} />
+					<Route path="/game" element={<GamePage />} />
+					<Route path="/game/:id" element={<GamePage />} />
+					<Route path="/*" element={<ErrorPage message="Page does not exist" />} />
+				</Routes>
+			</AuthProvider>
+		</BrowserRouter>
+	);
+}
