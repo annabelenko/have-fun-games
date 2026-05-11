@@ -197,3 +197,59 @@ const filtered = useMemo(() => {
 ```
 
 `useMemo` recomputes the filtered game list only when the source data or one of the three filter values changes, avoiding unnecessary re-renders on every keystroke. All three filters — text search, genre, and price range — are applied together so they compose naturally: a user can filter by "Action" games under $20 that match a search term simultaneously.
+
+---
+
+## Challenges & How We Overcame Them
+
+### 1. Frontend couldn't reach the backend from other devices on the network
+
+**Problem:** `VITE_BACKEND_URL` was hardcoded to a remote IP address (`146.245.228.248:3000`) that was no longer active. Any device on the local network trying to access the app would get `ERR_CONNECTION_REFUSED` because `localhost:3000` on that device resolves to itself, not the machine running the backend.
+
+**Solution:** We cleared `VITE_BACKEND_URL` to an empty string and configured a Vite dev server proxy instead. All `/api` requests from the frontend now go through Vite, which forwards them to `http://localhost:3000` on the host machine. This means the frontend only ever makes same-origin requests, and the proxy handles routing to the backend regardless of which IP the app is accessed from.
+
+```js
+// frontend/vite.config.js
+server: {
+  host: true, // expose on LAN
+  proxy: {
+    '/api': {
+      target: 'http://localhost:3000',
+      changeOrigin: true,
+    },
+  },
+}
+```
+
+---
+
+### 2. CORS errors blocking requests from LAN devices
+
+**Problem:** The backend's CORS config only allowed the single origin stored in `FRONTEND_URL`. When teammates accessed the app from their own machines (e.g. `http://192.168.1.157:5173`), the browser blocked every API request with a CORS error because that IP wasn't in the allowed list.
+
+**Solution:** We replaced the static origin check with a dynamic function that uses a regex to permit any `localhost`, `127.0.0.1`, or `192.168.x.x` origin. This lets any device on the local network use the app during development without having to update the `.env` file every time.
+
+```js
+// backend/src/server.js
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    if (
+      ALLOWED_ORIGINS.includes(origin) ||
+      /^http:\/\/(localhost|127\.0\.0\.1|192\.168\.\d+\.\d+)(:\d+)?$/.test(origin)
+    ) {
+      return callback(null, true);
+    }
+    callback(new Error(`CORS: origin '${origin}' not allowed`));
+  },
+  credentials: true,
+}));
+```
+
+---
+
+### 3. Stripe payment route returning 404 after adding it to the backend
+
+**Problem:** After creating `backend/src/routes/payments.js` and registering it in `server.js`, the frontend kept getting a 404 on `POST /api/payments/create-checkout-session`. The route existed in the code but wasn't being hit.
+
+**Solution:** The issue was that the backend process running at the time had been started *before* the payments route was added — it was serving the old, unmodified code from memory. Node.js doesn't hot-reload by default. We identified the stale process using `lsof -ti:3000`, killed it, and restarted the server fresh. The route responded correctly immediately after.
