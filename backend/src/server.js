@@ -7,6 +7,8 @@ import authRouter from "./routes/auth.js";
 import cartRouter from "./routes/cart.js";
 import paymentsRouter from "./routes/payments.js";
 
+// In production (Railway), env vars are injected directly.
+// Locally, dotenv loads from the root .env file.
 dotenv.config({ path: new URL('../../.env', import.meta.url).pathname });
 
 const app = express();
@@ -21,7 +23,8 @@ app.use(cors({
     if (!origin) return callback(null, true);
     if (
       ALLOWED_ORIGINS.includes(origin) ||
-      /^http:\/\/(localhost|127\.0\.0\.1|192\.168\.\d+\.\d+)(:\d+)?$/.test(origin)
+      /^http:\/\/(localhost|127\.0\.0\.1|192\.168\.\d+\.\d+)(:\d+)?$/.test(origin) ||
+      /^https:\/\/[a-z0-9-]+(\.vercel\.app)?$/.test(origin)
     ) {
       return callback(null, true);
     }
