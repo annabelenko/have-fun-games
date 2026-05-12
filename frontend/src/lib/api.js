@@ -1,4 +1,4 @@
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "https://have-fun-games-production.up.railway.app";
 
 export async function GetGameInfo(id) {
 	const response = await fetch(`${BACKEND_URL}/api/games/${id}`);
