@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { CartContext } from "./CartContext";
 import { AuthContext } from "../auth/AuthContext";
 import ItemPrice from "../components/ItemPrice";
+import { BACKEND_URL } from "../lib/api";
 
 function Checkout() {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ function Checkout() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("/api/payments/create-checkout-session", {
+      const res = await fetch(`${BACKEND_URL}/api/payments/create-checkout-session`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
